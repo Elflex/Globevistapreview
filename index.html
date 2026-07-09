@@ -690,7 +690,7 @@
       <span class="brand-name display">Globevista</span>
     </div>
     <div style="display:flex; align-items:center; gap:6px;">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙 </button>
       <a href="https://calendly.com/mahmoodlawal/30min" class="nav-cta" target="_blank">Book a Seat</a>
     </div>
   </div>
@@ -698,8 +698,8 @@
     <a href="index.html" class="tnlink">Home</a>
     <a href="services.html" class="tnlink">Services</a>
     <a href="about.html" class="tnlink">About</a>
+      <a href="contact.html" class="tnlink">Contact</a>
     <a href="destinations.html" class="tnlink">Destinations</a>
-    <a href="contact.html" class="tnlink">Contact</a>
     <a href="https://calendly.com/mahmoodlawal/30min" class="tnlink tnlink-accent" target="_blank">Book a Seat</a>
   </nav>
 </header>
@@ -1059,7 +1059,7 @@
     const d = new Date();
     const h = String(d.getHours()).padStart(2,'0');
     const m = String(d.getMinutes()).padStart(2,'0');
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const EST = Intl.DateTimeFormat().resolvedOptions().timeZone;
     document.getElementById('clock').textContent = h+':'+m+' '+tz;
   }
   tick(); setInterval(tick, 15000);
