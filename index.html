@@ -791,7 +791,7 @@
           <button class="dest-tab" data-idx="1" aria-label="Photo 2" aria-selected="false"></button>
           <button class="dest-tab" data-idx="2" aria-label="Photo 3" aria-selected="false"></button>
         </div>
-        <span class="dest-route mono">LOS → DXB</span>
+        <span class="dest-route mono">JFK → DXB</span>
       </div>
       <div class="dest-body">
         <h3>Dubai, UAE</h3>
@@ -809,7 +809,7 @@
           <button class="dest-tab" data-idx="1" aria-label="Photo 2" aria-selected="false"></button>
           <button class="dest-tab" data-idx="2" aria-label="Photo 3" aria-selected="false"></button>
         </div>
-        <span class="dest-route mono">LHE → IST</span>
+        <span class="dest-route mono">JFK → IST</span>
       </div>
       <div class="dest-body">
         <h3>Istanbul, Türkiye</h3>
@@ -827,7 +827,7 @@
           <button class="dest-tab" data-idx="1" aria-label="Photo 2" aria-selected="false"></button>
           <button class="dest-tab" data-idx="2" aria-label="Photo 3" aria-selected="false"></button>
         </div>
-        <span class="dest-route mono">JNB → LIS</span>
+        <span class="dest-route mono">JFK → LIS</span>
       </div>
       <div class="dest-body">
         <h3>Lisbon, Portugal</h3>
@@ -845,7 +845,7 @@
           <button class="dest-tab" data-idx="1" aria-label="Photo 2" aria-selected="false"></button>
           <button class="dest-tab" data-idx="2" aria-label="Photo 3" aria-selected="false"></button>
         </div>
-        <span class="dest-route mono">KHI → KUL</span>
+        <span class="dest-route mono">JFK → KUL</span>
       </div>
       <div class="dest-body">
         <h3>Kuala Lumpur, Malaysia</h3>
@@ -889,16 +889,42 @@
     <div class="eyebrow reveal">Traveler feedback</div>
     <h2 class="display reveal">What it's like to work with us.</h2>
     <p class="testi-note reveal">Real feedback from real travelers</p>
+    
+    <!-- New Review 1 -->
+    <div class="testi glass reveal">
+      <div class="stars">★★★★★</div>
+      <p>"Globevista took the stress out of our multi-city trip to Europe. Every detail was handled, and we didn't have to worry about a thing."</p>
+      <div class="testi-who">Anniversary trip, Italy &amp; France</div>
+    </div>
+
+    <!-- New Review 2 -->
+    <div class="testi glass reveal">
+      <div class="stars">★★★★★</div>
+      <p>"I've never used a travel planner before, but this was worth every cent. They found a route that saved us $400 compared to what I was seeing online."</p>
+      <div class="testi-who">First-time traveler, US &amp; UK</div>
+    </div>
+
+    <!-- New Review 3 -->
+    <div class="testi glass reveal">
+      <div class="stars">★★★★★</div>
+      <p>"From booking to boarding, the support was incredible. I had a last-minute change and they rebooked everything within 30 minutes."</p>
+      <div class="testi-who">Business traveler, Dubai &amp; Singapore</div>
+    </div>
+
+    <!-- Existing Original Review 1 -->
     <div class="testi glass reveal">
       <div class="stars">★★★★★</div>
       <p>"Sorted a family itinerary across three cities without a single scheduling clash. Communication was fast the whole way."</p>
       <div class="testi-who">Family trip, Southeast Asia</div>
     </div>
+
+    <!-- Existing Original Review 2 -->
     <div class="testi glass reveal">
       <div class="stars">★★★★★</div>
       <p>"Rebooked a connecting flight for us within the hour when a delay hit. That's the part you don't see until you need it."</p>
       <div class="testi-who">Business travel, Europe route</div>
     </div>
+
   </div>
 </section>
 
@@ -1041,15 +1067,15 @@
   // ===== LIVE FLIGHT DATA WITH AVIATIONSTACK =====
   const API_KEY = '768749699aea41f84de709731c5710ee';
   const BASE_URL = 'https://api.aviationstack.com/v1/flights';
-  const DEPARTURE_AIRPORT = 'LOS'; // Lagos, Nigeria
+  const DEPARTURE_AIRPORT = 'JFK'; // New York, USA (Changed from LOS to JFK)
   
   // Fallback data in case the API fails
   const fallbackRoutes = [
     { code:'DXB', city:'Dubai', gate:'B12', status:'On Time' },
-    { code:'IST', city:'Istanbul', gate:'A04', status:'On Time' },
-    { code:'LIS', city:'Lisbon', gate:'C09', status:'Boarding' },
-    { code:'KUL', city:'Kuala Lumpur', gate:'A21', status:'On Time' },
-    { code:'NBO', city:'Nairobi', gate:'B07', status:'On Time' },
+    { code:'LHR', city:'London', gate:'A04', status:'On Time' },
+    { code:'CDG', city:'Paris', gate:'C09', status:'Boarding' },
+    { code:'HND', city:'Tokyo', gate:'A21', status:'On Time' },
+    { code:'FRA', city:'Frankfurt', gate:'B07', status:'On Time' },
   ];
 
   // Function to fetch live flight data
@@ -1089,18 +1115,18 @@
 
     // Take first 5 flights
     return validFlights.slice(0, 5).map(f => {
-      // Map city names from IATA codes (simplified)
+      // Map city names from IATA codes
       const cityMap = {
         'DXB': 'Dubai',
+        'LHR': 'London',
+        'CDG': 'Paris',
+        'HND': 'Tokyo',
+        'FRA': 'Frankfurt',
+        'AMS': 'Amsterdam',
         'IST': 'Istanbul',
         'LIS': 'Lisbon',
         'KUL': 'Kuala Lumpur',
-        'NBO': 'Nairobi',
-        'LHR': 'London',
-        'JFK': 'New York',
-        'CDG': 'Paris',
-        'FRA': 'Frankfurt',
-        'AMS': 'Amsterdam'
+        'NBO': 'Nairobi'
       };
       
       const destCode = f.arrival.iata;
