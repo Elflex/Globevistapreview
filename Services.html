@@ -555,6 +555,87 @@
     }
   });
 </script>
+  
+<!-- ===== SAFE FIXES (NON-DESTRUCTIVE) ===== -->
+
+<script>
+(function(){
+  const toggle = document.getElementById("themeToggle");
+  if(toggle){
+    toggle.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme");
+      if(current === "light"){
+        document.documentElement.removeAttribute("data-theme");
+      } else {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    });
+  }
+})();
+</script>
+
+<script>
+(function(){
+  const overlay = document.querySelector(".service-overlay");
+  document.querySelectorAll("[data-service]").forEach(card => {
+    card.addEventListener("click", () => {
+      if(overlay){
+        overlay.classList.add("open");
+      }
+    });
+  });
+})();
+</script>
+
+<script>
+(function(){
+  const closeBtn = document.querySelector(".service-close");
+  const overlay = document.querySelector(".service-overlay");
+  if(closeBtn && overlay){
+    closeBtn.addEventListener("click", () => {
+      overlay.classList.remove("open");
+    });
+  }
+})();
+</script>
+
+<script>
+(function(){
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("in");
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+})();
+</script>
+
+<script>
+document.querySelectorAll("img").forEach(img=>{
+  img.setAttribute("loading","lazy");
+});
+</script>
+
+<style>
+.service-card{ cursor:pointer; }
+</style>
+
+<div class="service-overlay">
+  <div class="service-page">
+    <div class="service-page-top">
+      <span class="service-page-eyebrow">Service details</span>
+      <button class="service-close">✕</button>
+    </div>
+    <h3>Service Details</h3>
+    <p>More details about this service will appear here.</p>
+    <button class="btn btn-primary">Continue</button>
+  </div>
+</div>
+
+<!-- ===== END SAFE FIXES ===== -->
 
 </body>
 </html>
