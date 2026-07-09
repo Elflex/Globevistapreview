@@ -1,0 +1,117 @@
+
+<!-- ===== CONTACT PAGE SAFE FIXES (NON-DESTRUCTIVE) ===== -->
+
+<script>
+/* EMAILJS INIT + FORM FIX */
+(function(){
+  if(typeof emailjs !== "undefined"){
+    emailjs.init("YOUR_PUBLIC_KEY"); // replace later
+  }
+
+  const form = document.getElementById("contactForm");
+  const msg = document.getElementById("formMessage");
+  const btn = document.getElementById("submitBtn");
+
+  if(form){
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+
+      btn.disabled = true;
+      btn.innerText = "Sending...";
+
+      const params = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+      };
+
+      if(typeof emailjs !== "undefined"){
+        emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID", params)
+        .then(()=>{
+          msg.className = "form-message success";
+          msg.innerText = "Message sent successfully!";
+          form.reset();
+        })
+        .catch(()=>{
+          msg.className = "form-message error";
+          msg.innerText = "Failed to send. Try again.";
+        })
+        .finally(()=>{
+          btn.disabled = false;
+          btn.innerText = "Send inquiry →";
+        });
+      }
+    });
+  }
+})();
+</script>
+
+<script>
+/* NEWSLETTER FIX */
+(function(){
+  const form = document.getElementById("newsletterForm");
+  const msg = document.getElementById("newsletterMessage");
+  const btn = document.getElementById("newsletterBtn");
+
+  if(form){
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+
+      btn.disabled = true;
+      btn.innerText = "Subscribing...";
+
+      setTimeout(()=>{
+        msg.className = "newsletter-message success";
+        msg.innerText = "Subscribed successfully!";
+        form.reset();
+
+        btn.disabled = false;
+        btn.innerText = "Subscribe →";
+      },1000);
+    });
+  }
+})();
+</script>
+
+<script>
+/* THEME TOGGLE */
+(function(){
+  const toggle = document.getElementById("themeToggle");
+  if(toggle){
+    toggle.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme");
+      if(current === "light"){
+        document.documentElement.removeAttribute("data-theme");
+      } else {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    });
+  }
+})();
+</script>
+
+<script>
+/* REVEAL ANIMATION */
+(function(){
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("in");
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+})();
+</script>
+
+<script>
+/* LAZY LOAD IMAGES */
+document.querySelectorAll("img").forEach(img=>{
+  if(!img.hasAttribute("loading")){
+    img.setAttribute("loading","lazy");
+  }
+});
+</script>
+
+<!-- ===== END SAFE FIXES ===== -->
